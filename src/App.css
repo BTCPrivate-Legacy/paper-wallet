@@ -411,6 +411,10 @@ hr{
         display: none!important;
     }
 
+    .singleTabs {
+      margin: 10px !important;
+    }
+
     #layout {
         display: block;
     }
