@@ -1,7 +1,7 @@
 import React, { Component }     from 'react';
 import { Row, Col, Button, FormGroup, ControlLabel, FormControl, Table, Radio }
                                 from 'react-bootstrap';
-import { address, zaddress }    from 'zclassicjs';
+import { address, zaddress }    from 'btcprivatejs';
 
 class Bulk extends Component {
     constructor(props) {
@@ -119,13 +119,13 @@ class Bulk extends Component {
                             <Radio name="radioGroup"
                             onMouseDown={() => this.handleCheckRadio('T')}
                             checked={this.state.type === 'T'} inline>
-                                T Address
+                                B Address (Transparent)
                             </Radio>
                             <br />
                             <Radio name="radioGroup"
                             onMouseDown={() => this.handleCheckRadio('Z')}
                             checked={this.state.type === 'Z'} inline>
-                                Z Address
+                                Z Address (Private)
                             </Radio>
                         </FormGroup>
                     </Col>

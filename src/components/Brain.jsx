@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button, FormGroup, ControlLabel, Radio, FormControl }
                             from 'react-bootstrap';
 import { QRCode }           from 'react-qr-svg';
-import zclassicjs           from 'zclassicjs';
+import btcprivatejs           from 'btcprivatejs';
 
 class Brain extends Component {
     constructor(props) {
@@ -30,13 +30,13 @@ class Brain extends Component {
         for(let i = 0 ; i < it ; i++) {
             if((i*100/it) % 10 === 0) console.log((i*100/it) + "%");
 
-            priv      = zclassicjs.address.mkPrivKey(this.props.entropy + i);
+            priv      = btcprivatejs.address.mkPrivKey(this.props.entropy + i);
 
-            pub    = zclassicjs.address.privKeyToPubKey(priv);
-            addr    = zclassicjs.address.pubKeyToAddr(pub);
+            pub    = btcprivatejs.address.privKeyToPubKey(priv);
+            addr    = btcprivatejs.address.pubKeyToAddr(pub);
 
-            c_pub    = zclassicjs.address.privKeyToPubKey(priv, true);
-            c_addr    = zclassicjs.address.pubKeyToAddr(c_pub);
+            c_pub    = btcprivatejs.address.privKeyToPubKey(priv, true);
+            c_addr    = btcprivatejs.address.pubKeyToAddr(c_pub);
 
             if (addr.search("zn" + word) !== -1
             ||  c_addr.search("zn" + word) !== -1) {
@@ -46,8 +46,8 @@ class Brain extends Component {
         }
         console.log("<------END");
 
-        wif     = zclassicjs.address.privKeyToWIF(priv);
-        c_wif    = zclassicjs.address.privKeyToWIF(priv, true);
+        wif     = btcprivatejs.address.privKeyToWIF(priv);
+        c_wif    = btcprivatejs.address.privKeyToWIF(priv, true);
         this.setState({
             priv: priv,
             wif: wif,
@@ -69,10 +69,10 @@ class Brain extends Component {
             if(Number.isInteger(it)) return this.vanity(words[1], it);
         }
 
-        const priv      = zclassicjs.address.mkPrivKey(this.state.passphrase);
-        const privWIF   = zclassicjs.address.privKeyToWIF(priv, true);
-        const pubKey    = zclassicjs.address.privKeyToPubKey(priv, true);
-        const znAddr    = zclassicjs.address.pubKeyToAddr(pubKey);
+        const priv      = btcprivatejs.address.mkPrivKey(this.state.passphrase);
+        const privWIF   = btcprivatejs.address.privKeyToWIF(priv, true);
+        const pubKey    = btcprivatejs.address.privKeyToPubKey(priv, true);
+        const znAddr    = btcprivatejs.address.pubKeyToAddr(pubKey);
 
         this.setState({
             priv: priv,
@@ -84,15 +84,15 @@ class Brain extends Component {
     genZAddress() {
         if(!this.state.passphrase) return;
 
-        const z_secretKey   = zclassicjs.zaddress
+        const z_secretKey   = btcprivatejs.zaddress
                                 .mkZSecretKey(this.state.passphrase);
-        const spendingKey   = zclassicjs.zaddress
+        const spendingKey   = btcprivatejs.zaddress
                                 .zSecretKeyToSpendingKey(z_secretKey);
-        const a_pk          = zclassicjs.zaddress
+        const a_pk          = btcprivatejs.zaddress
                                 .zSecretKeyToPayingKey(z_secretKey);
-        const pk_enc        = zclassicjs.zaddress
+        const pk_enc        = btcprivatejs.zaddress
                                 .zSecretKeyToTransmissionKey(z_secretKey);
-        const Zaddress      = zclassicjs.zaddress.mkZAddress(a_pk, pk_enc);
+        const Zaddress      = btcprivatejs.zaddress.mkZAddress(a_pk, pk_enc);
 
         this.setState({
             priv: z_secretKey,
@@ -125,13 +125,13 @@ class Brain extends Component {
                             <Radio name="radioGroup"
                             onMouseDown={() => this.handleCheckRadio('T')}
                             checked={this.state.type === 'T'} inline>
-                                T Address
+                                B Address (Transparent)
                             </Radio>
                             <br />
                             <Radio name="radioGroup"
                             onMouseDown={() => this.handleCheckRadio('Z')}
                             checked={this.state.type === 'Z'} inline>
-                                Z Address
+                                Z Address (Private)
                             </Radio>
                         </FormGroup>
                     </Col>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button, FormGroup, Radio, ControlLabel, FormControl }
                             from 'react-bootstrap';
 import { QRCode }           from 'react-qr-svg';
-import zclassicjs            from 'zclassicjs';
+import btcprivatejs            from 'btcprivatejs';
 
 
 class Details extends Component {
@@ -36,17 +36,17 @@ class Details extends Component {
             || this.state.input[0] === 'L'
             || this.state.input[0] === 'K') {
                 privWIF = this.state.input;
-                priv    = zclassicjs.address.WIFToPrivKey(privWIF);
+                priv    = btcprivatejs.address.WIFToPrivKey(privWIF);
             } else {
                 priv    = this.state.input;
-                privWIF = zclassicjs.address.privKeyToWIF(priv, true);
+                privWIF = btcprivatejs.address.privKeyToWIF(priv, true);
             }
         } catch(e) {
             return alert("Invalid Private Key");
         }
 
-        const pubKey    = zclassicjs.address.privKeyToPubKey(priv, true);
-        const znAddr    = zclassicjs.address.pubKeyToAddr(pubKey);
+        const pubKey    = btcprivatejs.address.privKeyToPubKey(priv, true);
+        const znAddr    = btcprivatejs.address.pubKeyToAddr(pubKey);
 
         this.setState({
             priv: priv,
@@ -66,17 +66,17 @@ class Details extends Component {
             if(!z_secretKey) throw(z_secretKey);
             if(z_secretKey[0] !== '0') throw(z_secretKey);
 
-            spendingKey = zclassicjs.zaddress
+            spendingKey = btcprivatejs.zaddress
                             .zSecretKeyToSpendingKey(z_secretKey);
-            a_pk        = zclassicjs.zaddress
+            a_pk        = btcprivatejs.zaddress
                             .zSecretKeyToPayingKey(z_secretKey);
-            pk_enc      = zclassicjs.zaddress
+            pk_enc      = btcprivatejs.zaddress
                             .zSecretKeyToTransmissionKey(z_secretKey);
         } catch(e) {
             return alert("Invalid Private Key");
         }
 
-        const Zaddress  = zclassicjs.zaddress.mkZAddress(a_pk, pk_enc);
+        const Zaddress  = btcprivatejs.zaddress.mkZAddress(a_pk, pk_enc);
 
         this.setState({
             priv: z_secretKey,
@@ -109,13 +109,13 @@ class Details extends Component {
                             <Radio name="radioGroup"
                             onMouseDown={() => this.handleCheckRadio('T')}
                             checked={this.state.type === 'T'} inline>
-                                T Address
+                                B Address (Transparent)
                             </Radio>
                             <br />
                             <Radio name="radioGroup"
                             onMouseDown={() => this.handleCheckRadio('Z')}
                             checked={this.state.type === 'Z'} inline>
-                                Z Address
+                                Z Address (Private)
                             </Radio>
                         </FormGroup>
                     </Col>
@@ -191,7 +191,7 @@ class Details extends Component {
                 <Row className="r3">
                     <Col>
                         <p>
-                            Entering your private key here allows you to view your Zclassic address and print your wallet if you wish.
+                            Entering your private key here allows you to view your Bitcoin Private (BTCP) address and print your wallet if you wish.
                         </p>
                         <p>
                             <b>Warning: make sure you are on paperwallet.btcprivate.org !</b>

@@ -2,7 +2,7 @@ import React, { Component }     from 'react';
 import { Row, Col, Button, FormGroup, ControlLabel, FormControl }
                                 from 'react-bootstrap';
 import { QRCode }               from 'react-qr-svg';
-import { address }              from 'zclassicjs';
+import { address }              from 'btcprivatejs';
 
 class Multisig extends Component {
     constructor(props) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button, FormGroup, Radio }
                             from 'react-bootstrap';
 import { QRCode }           from 'react-qr-svg';
-import zclassicjs           from 'zclassicjs';
+import btcprivatejs           from 'btcprivatejs';
 
 class Single extends Component {
     constructor(props) {
@@ -16,11 +16,11 @@ class Single extends Component {
     }
 
     genTAddress() {
-        const priv      = zclassicjs.address
+        const priv      = btcprivatejs.address
             .mkPrivKey(this.props.entropy + new Date().getTime());
-        const privWIF   = zclassicjs.address.privKeyToWIF(priv, true);
-        const pubKey    = zclassicjs.address.privKeyToPubKey(priv, true);
-        const znAddr    = zclassicjs.address.pubKeyToAddr(pubKey);
+        const privWIF   = btcprivatejs.address.privKeyToWIF(priv, true);
+        const pubKey    = btcprivatejs.address.privKeyToPubKey(priv, true);
+        const znAddr    = btcprivatejs.address.pubKeyToAddr(pubKey);
 
         this.setState({
             priv: priv,
@@ -30,15 +30,15 @@ class Single extends Component {
     }
 
     genZAddress() {
-        const z_secretKey   = zclassicjs.zaddress
+        const z_secretKey   = btcprivatejs.zaddress
             .mkZSecretKey(this.props.entropy + new Date().getTime());
-        const spendingKey   = zclassicjs.zaddress
+        const spendingKey   = btcprivatejs.zaddress
                                 .zSecretKeyToSpendingKey(z_secretKey);
-        const a_pk          = zclassicjs.zaddress
+        const a_pk          = btcprivatejs.zaddress
                                 .zSecretKeyToPayingKey(z_secretKey);
-        const pk_enc        = zclassicjs.zaddress
+        const pk_enc        = btcprivatejs.zaddress
                                 .zSecretKeyToTransmissionKey(z_secretKey);
-        const Zaddress      = zclassicjs.zaddress.mkZAddress(a_pk, pk_enc);
+        const Zaddress      = btcprivatejs.zaddress.mkZAddress(a_pk, pk_enc);
 
         this.setState({
             priv: z_secretKey,
@@ -71,13 +71,13 @@ class Single extends Component {
                         <Radio name="radioGroup"
                         onMouseDown={() => this.handleCheckRadio('T')}
                         checked={this.state.type === 'T'} inline>
-                            T Address
+                            B Address (Transparent)
                         </Radio>
                         <br />
                         <Radio name="radioGroup"
                         onMouseDown={() => this.handleCheckRadio('Z')}
                         checked={this.state.type === 'Z'} inline>
-                            Z Address
+                            Z Address (Private)
                         </Radio>
                     </FormGroup>
                 </Col>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { QRCode }           from 'react-qr-svg';
-import zclassicjs           from 'zclassicjs';
+import btcprivatejs           from 'btcprivatejs';
 
 import art1 from '../zen_paper_front.png';
 import art2 from '../zen_paper_back.png';
@@ -18,11 +18,11 @@ class Paper extends Component {
     }
 
     genAddress() {
-        const priv      = zclassicjs.address
+        const priv      = btcprivatejs.address
             .mkPrivKey(this.props.entropy + new Date().getTime());
-        const privWIF   = zclassicjs.address.privKeyToWIF(priv, true);
-        const pubKey    = zclassicjs.address.privKeyToPubKey(priv, true);
-        const znAddr    = zclassicjs.address.pubKeyToAddr(pubKey);
+        const privWIF   = btcprivatejs.address.privKeyToWIF(priv, true);
+        const pubKey    = btcprivatejs.address.privKeyToPubKey(priv, true);
+        const znAddr    = btcprivatejs.address.pubKeyToAddr(pubKey);
 
         this.setState({
             priv: priv,

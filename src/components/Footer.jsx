@@ -14,7 +14,7 @@ export default class Footer extends Component {
                     <Col xs={12} className="footerSocialWrap">
                         <ul className="footerSocial">
                             <li>
-                                <a href="http://btcprivate.org/">
+                                <a href="https://btcprivate.org/">
                                     <img src={website} alt="website"/>
                                 </a>
                             </li>
