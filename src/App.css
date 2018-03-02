@@ -61,7 +61,7 @@ a:hover{
   position: absolute;
   padding: 6px;
   border-radius: 6px;
-  background-color: #CF6C2E;
+  background-color: #7fa7d8;
   z-index: 10;
 }
 .max-width {
@@ -167,7 +167,7 @@ a:hover{
     text-transform: capitalize;
     /*width: 118px;*/
     outline: none;
-    background-color: #813100;
+    background-color: #272e64;
     color: #fff;
     font-weight: 500;
 }
@@ -179,7 +179,7 @@ a:hover{
 .zenTabsWrap .nav-pills > li.active > a:focus,
 .zenTabsWrap .nav-pills > li.active > a:hover {
     background-color: #FFFFFF;
-    color: #813100;
+    color: #272E64;
 }
 
 .zenTabsWrap .nav-pills>li+li {

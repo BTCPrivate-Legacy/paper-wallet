@@ -32,7 +32,7 @@ export default class Footer extends Component {
                 </div>
                 <div>
                 <p className="footerCopyright">
-                    ZCL donations to maintain the servers: t1HzsNXe9B5AL7vc3ZJp3c7ZG5zjUWSYvSi
+                    {/* ZCL donations to maintain the servers: t1HzsNXe9B5AL7vc3ZJp3c7ZG5zjUWSYvSi */}
                 </p>
 
                 <p className="footerCopyright">
