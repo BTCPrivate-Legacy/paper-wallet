@@ -200,16 +200,16 @@ a:hover{
     background-color: #fff;
     background-image: none;
     background-repeat: repeat-x;
-    border: 1px solid #813100;
+    border: 1px solid #272E64;
     border-radius: 0;
-    color: #813100;
+    color: #272E64;
     padding: 3px 10px;
     text-shadow: 0 0;
 }
 .btn-default:hover{
-    background-color: #813100;
+    background-color: #272E64;
     color: #fff;
-    border-color: #813100;
+    border-color: #272E64;
 }
 
 hr{
@@ -309,6 +309,10 @@ hr{
 
 }
 
+.progress-bar {
+    background-image: linear-gradient(to bottom,#272E64,#272E64 100%);
+}
+
 .footerSocial li a{
     padding: 0px 10px;
 }
@@ -354,7 +358,7 @@ hr{
         display: block;
         left: 33.5%;
         top: 47.5%;
-        color: #813100;
+        color: #272E64;
         font-weight: 900;
         font-size: 0.66em;
     }
