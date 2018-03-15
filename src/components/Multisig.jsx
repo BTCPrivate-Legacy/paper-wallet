@@ -85,7 +85,7 @@ class Multisig extends Component {
                             />
                         </FormGroup>
                     </Col>
-                    <Col md={1}>
+                    <Col md={1} className="inherit-width">
                         <Button onClick={() => this.genAddress()}>
                             Generate
                         </Button>

@@ -236,6 +236,11 @@ hr{
 
 }
 
+.inherit-width{
+    width: inherit
+
+}
+
 .zentabcode{
     max-width: 200px;
 }
