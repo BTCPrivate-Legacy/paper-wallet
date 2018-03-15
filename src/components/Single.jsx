@@ -80,7 +80,7 @@ class Single extends Component {
                     </FormGroup>
                 </Col>
 
-                <Col md={2}>
+                <Col md={2} className="inherit-width">
                     <Button onClick={this.state.type === 'T' ?
                         () => this.genTAddress()
                         : () => this.genZAddress()}

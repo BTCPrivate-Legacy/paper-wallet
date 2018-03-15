@@ -129,7 +129,7 @@ class Details extends Component {
                             />
                         </FormGroup>
                     </Col>
-                    <Col xs={2}>
+                    <Col xs={2} className="inherit-width">
                         <Button onClick={this.state.type === 'T' ?
                             () => this.genTAddress()
                             : () => this.genZAddress()}

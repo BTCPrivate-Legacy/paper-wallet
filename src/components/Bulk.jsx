@@ -129,7 +129,7 @@ class Bulk extends Component {
                             </Radio>
                         </FormGroup>
                     </Col>
-                    <Col md={1}>
+                    <Col md={1} className="inherit-width">
                         <Button onClick={this.state.type === 'T' ?
                             () => this.genTAddress()
                             : () => this.genZAddress()}
