@@ -116,14 +116,14 @@ class Bulk extends Component {
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-                            <Radio name="radioGroup"
-                            onMouseDown={() => this.handleCheckRadio('T')}
+                            <Radio name="bulkRadioGroup"
+                            onChange={() => this.handleCheckRadio('T')}
                             checked={this.state.type === 'T'} inline>
                                 B Address (Transparent)
                             </Radio>
                             <br />
-                            <Radio name="radioGroup"
-                            onMouseDown={() => this.handleCheckRadio('Z')}
+                            <Radio name="bulkRadioGroup"
+                            onChange={() => this.handleCheckRadio('Z')}
                             checked={this.state.type === 'Z'} inline>
                                 Z Address (Private)
                             </Radio>

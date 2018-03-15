@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Button, FormGroup, Radio }
                             from 'react-bootstrap';
 import { QRCode }           from 'react-qr-svg';
-import btcprivatejs           from 'btcprivatejs';
+import btcprivatejs         from 'btcprivatejs';
 
 class Single extends Component {
     constructor(props) {
@@ -16,8 +16,7 @@ class Single extends Component {
     }
 
     genTAddress() {
-        const priv      = btcprivatejs.address
-            .mkPrivKey(this.props.entropy + new Date().getTime());
+        const priv      = btcprivatejs.address.mkPrivKey(this.props.entropy + new Date().getTime());
         const privWIF   = btcprivatejs.address.privKeyToWIF(priv, true);
         const pubKey    = btcprivatejs.address.privKeyToPubKey(priv, true);
         const znAddr    = btcprivatejs.address.pubKeyToAddr(pubKey);
@@ -31,7 +30,7 @@ class Single extends Component {
 
     genZAddress() {
         const z_secretKey   = btcprivatejs.zaddress
-            .mkZSecretKey(this.props.entropy + new Date().getTime());
+                                .mkZSecretKey(this.props.entropy + new Date().getTime());
         const spendingKey   = btcprivatejs.zaddress
                                 .zSecretKeyToSpendingKey(z_secretKey);
         const a_pk          = btcprivatejs.zaddress
@@ -67,14 +66,14 @@ class Single extends Component {
             <Row className="r1">
                 <Col md={4}>
                     <FormGroup>
-                        <Radio name="radioGroup"
-                        onMouseDown={() => this.handleCheckRadio('T')}
+                        <Radio name="singleRadioGroup"
+                        onChange={() => this.handleCheckRadio('T')}
                         checked={this.state.type === 'T'} inline>
                             B Address (Transparent)
                         </Radio>
                         <br />
-                        <Radio name="radioGroup"
-                        onMouseDown={() => this.handleCheckRadio('Z')}
+                        <Radio name="singleRadioGroup"
+                        onChange={() => this.handleCheckRadio('Z')}
                         checked={this.state.type === 'Z'} inline>
                             Z Address (Private)
                         </Radio>
