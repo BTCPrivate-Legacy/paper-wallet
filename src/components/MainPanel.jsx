@@ -6,6 +6,7 @@ import Single   from "./Single";
 import Bulk     from "./Bulk";
 import Details  from "./Details";
 import Multisig from "./Multisig";
+import HD       from "./HD";
 import Entropy  from "./Entropy";
 
 export default class MainPanel extends Component {
@@ -29,7 +30,8 @@ export default class MainPanel extends Component {
             { id: 0,    title: "Single Address",        content: Single },
             { id: 1,    title: "Multi-Sig Wallet",      content: Multisig },
             { id: 2,    title: "Bulk Wallet",           content: Bulk },
-            { id: 3,    title: "Wallet Details",        content: Details }
+            { id: 3,    title: "Wallet Details",        content: Details },
+            { id: 4,    title: "HD Wallet",             content: HD }
         ];
     }
 
