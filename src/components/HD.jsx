@@ -15,21 +15,26 @@ class HD extends Component {
     }
 
     genMnemonic() {
-        console.log(this.props.entropy);
-        // import your root xprv you gave
-  //var hd = HDNode.fromBase58('xprv9s21ZrQH143K2XmdMqcWE29L75KLystP5qeMrRh7NJZdKvdRykoR6wNVohA7yUeaRtK2vni2ybAAY7mt8QyAmJDt6EF7f7DhbHFNMit7keL')
-  // derive m/44'/0'/0' and export as base58check
-  //> hd.deriveHardened(44).deriveHardened(0).deriveHardened(0).toBase58()
-  //'xprv9z7KYqivhqD6FHfsDLbFEPDfWFt6xHzV1j3fG4rHoV4w2ppyd74aY8UwywJb8eqxAoJ7NqiDp1dCsYzicgnGPkhmhbLZkMnWhMwUxa23Uah'
-        var m = bip39.generateMnemonic();
-        console.log(m.toString());
+        var m = bip39.entropyToMnemonic(this.props.entropy.toString(16).substring(0, 32))
+        //var m = bip39.generateMnemonic();
+        //console.log(m.toString());
+
         var hd = HDNode.fromSeedHex(bip39.mnemonicToSeedHex(m));
-        console.log(hd.toBase58());
+        //console.log(hd.toBase58());
+
+        var masterXprv = hd.toBase58();
+        var masterXpub = hd.neutered().toBase58();
+
+        var derivedHD = hd.deriveHardened(44).deriveHardened(183).deriveHardened(0);
+        var derivedXprv = derivedHD.toBase58();
+        var derivedXpub = derivedHD.neutered().toBase58();
 
         this.setState({
           mnemonic: m,
-          xprv: hd.toBase58(),
-          xpub: hd.neutered().toBase58()
+          xprv: masterXprv,
+          xpub: masterXpub,
+          derivedXprv: derivedXprv,
+          derivedXpub: derivedXpub
         });
     }
 
@@ -38,7 +43,9 @@ class HD extends Component {
         type: type,
         mnemonic: '',
         xprv: '',
-        xpub: ''
+        xpub: '',
+        derivedXprv: '',
+        derivedXpub: ''
       });
     }
 
@@ -48,7 +55,7 @@ class HD extends Component {
             <Row className="r1">
                 <Col md={2} className="inherit-width">
                     <Button onClick={() => this.genMnemonic()}>
-                        Generate New HD Wallet
+                        Reveal your new HD Wallet
                     </Button>
                 </Col>
                 <Col md={2}>
@@ -72,6 +79,13 @@ class HD extends Component {
                       <div className="xpub">
                           {this.state.xpub}
                       </div>
+                      <h5>xpub/xprv derived at BIP44 for BTCP, account 0 (m/44'/183'/0')</h5>
+                      <div className="derivedXprv">
+                          {this.state.derivedXprv}
+                      </div>
+                      <div className="derivedXpub">
+                          {this.state.derivedXpub}
+                      </div>
                   </Col>
 
               </Row>
@@ -84,7 +98,7 @@ class HD extends Component {
                     <Col>
                         <div>
                         <p>
-                            <b>A Bitcoin Private Wallet</b> can be as simple as a single pairing of an address with its corresponding private key. You can share your address to receive BTCP payments, however your private key is what allows you to unlock, manage, and send your funds - <b>keep it safe</b>.
+                            <b>A Bitcoin Private HD Wallet</b> is a mnemonic phrase of English words. These are determined by your initial mouse movements, and result in a seed for chains of wallets/addresses. These allow for chains selected by 'derivation path' (bip32/bip44), whose keys start with 'xprv'. You can also export a corresponding, view/'generate'-only 'xpub'. Your mnemonic seed words, or your master 'xprv' key, or your derived 'xprv' key will allow you to unlock, manage, and spend those corresponding funds - <b>keep it safe</b>.
                         </p>
                         <p>
                             <b>**To safeguard this wallet**</b> you must print or otherwise record the address and private key. It is important to make a backup copy of the private key and store it in a safe location. This site does not have knowledge of your private key. If you leave/refresh the site or press the "Generate New Address" button then a new private key will be generated and the previously displayed private key will be forever lost. Your private key should be kept a secret. Whomever you share the private key with has access to spend all the BTCP associated with that address. If you print your wallet then store it in a zip lock bag to keep it safe from water. Treat a paper wallet like cash.
@@ -110,11 +124,5 @@ class HD extends Component {
         );
     }
 }
-
-/*
-    getZpriv() {
-        if (this.state.type === 'Z') { } //return("Private Key: " + this.state.priv);
-    }
-*/
 
 export default HD;
