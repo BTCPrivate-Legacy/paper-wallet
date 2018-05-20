@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col, Button, FormGroup, Radio }
+import { Row, Col, Button }
                             from 'react-bootstrap';
-import { QRCode }           from 'react-qr-svg';
 import { HDNode }           from 'bitcoinjs-lib';
-import btcprivatejs         from 'btcprivatejs';
 import bip39                from 'bip39';
 
 class HD extends Component {
@@ -67,12 +65,14 @@ class HD extends Component {
 
             {this.state.mnemonic ? (
               <Row className="r2">
-                  <Col xs={12} className="max-width singleTabs col-xs-offset-3">
+                  <Col xs={12} className="max-width singleTabs">
                       <h1 style={{color:'red'}}>Private</h1>
                       <h3>BIP39 Mnemonic</h3>
+                      <h5>master seed words (= master xprv)</h5>
                       <div className="mnemonic">
                           {this.state.mnemonic}
                       </div>
+                      <h5>master xpub/xprv (m/)</h5>
                       <div className="xprv">
                           {this.state.xprv}
                       </div>
