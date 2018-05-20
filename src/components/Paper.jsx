@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { QRCode }           from 'react-qr-svg';
-import btcprivatejs           from 'btcprivatejs';
+import btcprivatejs         from 'btcprivatejs';
 
 import art1 from '../zen_paper_front.png';
 import art2 from '../zen_paper_back.png';

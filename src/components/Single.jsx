@@ -154,7 +154,7 @@ class Single extends Component {
                             <b>Check your balance</b> by entering your BTCP address on one of these explorers:
                         </p>
                         <ul style={{listStyleType: 'none'}}>
-                            <li><a href="https://explorer.btcprivate.org/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'underline'}}>explorer.btcprivate.org</a></li>
+                            <li><a href="https://explorer.btcprivate.org/" target="_blank" rel="noopener noreferrer" style={{textDecoration: 'underline'}}>https://explorer.btcprivate.org</a></li>
                         </ul>
                         <br/>
                         <p>

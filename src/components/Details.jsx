@@ -106,14 +106,14 @@ class Details extends Component {
                 <Row className="r1">
                     <Col md={3}>
                         <FormGroup>
-                            <Radio name="radioGroup"
-                            onMouseDown={() => this.handleCheckRadio('T')}
+                            <Radio name="detailsRadioGroup"
+                            onChange={() => this.handleCheckRadio('T')}
                             checked={this.state.type === 'T'} inline>
                                 B Address (Transparent)
                             </Radio>
                             <br />
-                            <Radio name="radioGroup"
-                            onMouseDown={() => this.handleCheckRadio('Z')}
+                            <Radio name="detailsRadioGroup"
+                            onChange={() => this.handleCheckRadio('Z')}
                             checked={this.state.type === 'Z'} inline>
                                 Z Address (Private)
                             </Radio>
